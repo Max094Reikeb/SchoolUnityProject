@@ -22,6 +22,11 @@ public class Obstacle : MonoBehaviour
         }
     }
 
+    public void SetDamages(int damages)
+    {
+        Damages = damages;
+    }
+
     public int Explode()
     {
         Destroy(gameObject);

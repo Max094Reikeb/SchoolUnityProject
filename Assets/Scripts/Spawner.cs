@@ -6,6 +6,16 @@ public class Spawner : MonoBehaviour
     private Obstacle ObstaclePrefab;
 
     [SerializeField]
+    private Obstacle SquareObstaclePrefab;
+
+    [SerializeField]
+    private Obstacle CapsuleObstaclePrefab;
+
+    private const int SphereDamages = 1;
+    private const int SquareDamages = 3;
+    private const int CapsuleDamages = 5;
+
+    [SerializeField]
     private Vector2 SpawnBounds;
 
     [SerializeField]
@@ -18,7 +28,19 @@ public class Spawner : MonoBehaviour
     {
         if(Time.time > _nextSpawn)
         {
-            SpawnSphere();
+            float r = Random.value;
+            if (r < 0.40f)
+            {
+                SpawnSphere();
+            }
+            else if (r < 0.75f)
+            {
+                SpawnSquare();
+            }
+            else
+            {
+                SpawnCapsule();
+            }
 
             _nextSpawn = Time.time + Random.Range(SpawnDelay.x, SpawnDelay.y);
         }
@@ -26,11 +48,27 @@ public class Spawner : MonoBehaviour
 
     private void SpawnSphere()
     {
-        Obstacle o = Instantiate(ObstaclePrefab, transform);
+        Spawn(ObstaclePrefab, SphereDamages);
+    }
+
+    private void SpawnSquare()
+    {
+        Spawn(SquareObstaclePrefab, SquareDamages);
+    }
+
+    private void SpawnCapsule()
+    {
+        Spawn(CapsuleObstaclePrefab, CapsuleDamages);
+    }
+
+    private void Spawn(Obstacle prefab, int damages)
+    {
+        Obstacle o = Instantiate(prefab, transform);
         o.transform.localPosition = new Vector3(
             Random.Range(-SpawnBounds.x, SpawnBounds.x),
             Random.Range(-SpawnBounds.y, SpawnBounds.y),
             0);
+        o.SetDamages(damages);
     }
 
     private void OnDrawGizmosSelected()
