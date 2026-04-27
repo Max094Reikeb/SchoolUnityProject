@@ -11,9 +11,28 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private Obstacle CapsuleObstaclePrefab;
 
+    [SerializeField]
+    private Pickup SlowDownPickupPrefab;
+
+    [SerializeField]
+    private Pickup FewerDangersPickupPrefab;
+
+    [SerializeField]
+    private Pickup SpeedUpPickupPrefab;
+
+    [SerializeField]
+    private Pickup MoreDangersPickupPrefab;
+
     private const int SphereDamages = 1;
     private const int SquareDamages = 3;
     private const int CapsuleDamages = 5;
+
+    private const float PickupSpawnChance = 0.15f;
+
+    private const float SlowFactor = 0.5f;
+    private const float SpeedUpFactor = 1.6f;
+    private const float FewerDangersFactor = 0.4f;
+    private const float MoreDangersFactor = 2f;
 
     [SerializeField]
     private Vector2 SpawnBounds;
@@ -23,42 +42,91 @@ public class Spawner : MonoBehaviour
 
     private float _nextSpawn;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Time.time > _nextSpawn)
-        {
-            float r = Random.value;
-            if (r < 0.40f)
-            {
-                SpawnSphere();
-            }
-            else if (r < 0.75f)
-            {
-                SpawnSquare();
-            }
-            else
-            {
-                SpawnCapsule();
-            }
+    private float _slowEndTime;
+    private float _speedUpEndTime;
+    private float _fewerDangersEndTime;
+    private float _moreDangersEndTime;
 
-            _nextSpawn = Time.time + Random.Range(SpawnDelay.x, SpawnDelay.y);
+    public float SpeedMultiplier
+    {
+        get
+        {
+            float m = 1f;
+            if (Time.time < _slowEndTime) m *= SlowFactor;
+            if (Time.time < _speedUpEndTime) m *= SpeedUpFactor;
+            return m;
         }
     }
 
-    private void SpawnSphere()
+    private float DangerWeight
     {
-        Spawn(ObstaclePrefab, SphereDamages);
+        get
+        {
+            float m = 1f;
+            if (Time.time < _fewerDangersEndTime) m *= FewerDangersFactor;
+            if (Time.time < _moreDangersEndTime) m *= MoreDangersFactor;
+            return m;
+        }
     }
 
-    private void SpawnSquare()
+    void Update()
     {
-        Spawn(SquareObstaclePrefab, SquareDamages);
+        if (Time.time > _nextSpawn)
+        {
+            if (Random.value < PickupSpawnChance)
+            {
+                SpawnPickup();
+            }
+            else
+            {
+                SpawnObstacle();
+            }
+
+            float delay = Random.Range(SpawnDelay.x, SpawnDelay.y) / SpeedMultiplier;
+            _nextSpawn = Time.time + delay;
+        }
     }
 
-    private void SpawnCapsule()
+    private void SpawnObstacle()
     {
-        Spawn(CapsuleObstaclePrefab, CapsuleDamages);
+        float weight = DangerWeight;
+        float sphereW = 0.40f;
+        float squareW = 0.35f * weight;
+        float capsuleW = 0.25f * weight;
+        float total = sphereW + squareW + capsuleW;
+
+        float r = Random.value * total;
+        if (r < sphereW)
+        {
+            Spawn(ObstaclePrefab, SphereDamages);
+        }
+        else if (r < sphereW + squareW)
+        {
+            Spawn(SquareObstaclePrefab, SquareDamages);
+        }
+        else
+        {
+            Spawn(CapsuleObstaclePrefab, CapsuleDamages);
+        }
+    }
+
+    private void SpawnPickup()
+    {
+        Pickup prefab;
+        float r = Random.value;
+        if (r < 0.25f) prefab = SlowDownPickupPrefab;
+        else if (r < 0.50f) prefab = FewerDangersPickupPrefab;
+        else if (r < 0.75f) prefab = SpeedUpPickupPrefab;
+        else prefab = MoreDangersPickupPrefab;
+
+        if (prefab == null) return;
+
+        Pickup p = Instantiate(prefab, transform);
+        p.transform.localPosition = new Vector3(
+            Random.Range(-SpawnBounds.x, SpawnBounds.x),
+            Random.Range(-SpawnBounds.y, SpawnBounds.y),
+            0);
+        p.Initialize(this);
     }
 
     private void Spawn(Obstacle prefab, int damages)
@@ -69,6 +137,26 @@ public class Spawner : MonoBehaviour
             Random.Range(-SpawnBounds.y, SpawnBounds.y),
             0);
         o.SetDamages(damages);
+        o.Initialize(this);
+    }
+
+    public void ApplyEffect(Pickup.EffectType type, float duration)
+    {
+        switch (type)
+        {
+            case Pickup.EffectType.SlowDown:
+                _slowEndTime = Mathf.Max(Time.time, _slowEndTime) + duration;
+                break;
+            case Pickup.EffectType.SpeedUp:
+                _speedUpEndTime = Mathf.Max(Time.time, _speedUpEndTime) + duration;
+                break;
+            case Pickup.EffectType.FewerDangers:
+                _fewerDangersEndTime = Mathf.Max(Time.time, _fewerDangersEndTime) + duration;
+                break;
+            case Pickup.EffectType.MoreDangers:
+                _moreDangersEndTime = Mathf.Max(Time.time, _moreDangersEndTime) + duration;
+                break;
+        }
     }
 
     private void OnDrawGizmosSelected()

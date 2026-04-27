@@ -53,6 +53,13 @@ public class Player : MonoBehaviour
                 enabled = false;
                 GameOverScreen.SetActive(true);
             }
+            return;
+        }
+
+        Pickup p = other.GetComponent<Pickup>();
+        if (p != null)
+        {
+            p.Collect();
         }
     }
 }

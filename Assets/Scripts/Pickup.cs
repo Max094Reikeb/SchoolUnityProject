@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Pickup : MonoBehaviour
 {
+    public enum EffectType { SlowDown, FewerDangers, SpeedUp, MoreDangers }
+
     [SerializeField]
     private float Speed;
 
@@ -9,9 +11,15 @@ public class Obstacle : MonoBehaviour
     private float DestroyDistance;
 
     [SerializeField]
-    private int Damages;
+    private EffectType Effect;
+
+    [SerializeField]
+    private float Duration = 5f;
 
     private Spawner _spawner;
+
+    public EffectType GetEffect() => Effect;
+    public float GetDuration() => Duration;
 
     public void Initialize(Spawner spawner)
     {
@@ -23,20 +31,18 @@ public class Obstacle : MonoBehaviour
         float multiplier = _spawner != null ? _spawner.SpeedMultiplier : 1f;
         transform.position += new Vector3(0, 0, -Speed * multiplier * Time.deltaTime);
 
-        if(transform.position.z < DestroyDistance)
+        if (transform.position.z < DestroyDistance)
         {
             Destroy(gameObject);
         }
     }
 
-    public void SetDamages(int damages)
+    public void Collect()
     {
-        Damages = damages;
-    }
-
-    public int Explode()
-    {
+        if (_spawner != null)
+        {
+            _spawner.ApplyEffect(Effect, Duration);
+        }
         Destroy(gameObject);
-        return Damages;
     }
 }
