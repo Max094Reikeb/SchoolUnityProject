@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1524288240306422757, guid: 045725f9f2d8b6a43addd26477891438, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: de637f195358da84cb984cbf0c631639, type: 2}
     - target: {fileID: 4122587926525220398, guid: 045725f9f2d8b6a43addd26477891438, type: 3}
       propertyPath: m_Name
       value: SquareObstacle

@@ -101,3 +101,6 @@ InitTestScene*.unity*
 
 # Others
 .vsconfig
+
+# Notes et docs perso à la racine (non versionnées) — ne touche pas aux .md dans Assets/
+/*.md

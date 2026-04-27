@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1524288240306422757, guid: 045725f9f2d8b6a43addd26477891438, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4696edce7ccca724b93070dc8a446847, type: 2}
     - target: {fileID: 4122587926525220398, guid: 045725f9f2d8b6a43addd26477891438, type: 3}
       propertyPath: m_Name
       value: CapsuleObstacle
@@ -64,6 +68,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4122587926525220398, guid: 045725f9f2d8b6a43addd26477891438, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4951636291312587874}
+    - targetCorrespondingSourceObject: {fileID: 4122587926525220398, guid: 045725f9f2d8b6a43addd26477891438, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1360969412832860678}
   m_SourcePrefab: {fileID: 100100000, guid: 045725f9f2d8b6a43addd26477891438, type: 3}
 --- !u!1 &7624515310706522996 stripped
 GameObject:
@@ -93,3 +100,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1360969412832860678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624515310706522996}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590d0a4a23369fe4094bee34430c4b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.UI.DebugUIHandlerColor
+  colorDefault: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  colorSelected: {r: 0.25, g: 0.65, b: 0.8, a: 1}
+  nameLabel: {fileID: 0}
+  valueToggle: {fileID: 0}
+  colorImage: {fileID: 0}
+  fieldR: {fileID: 0}
+  fieldG: {fileID: 0}
+  fieldB: {fileID: 0}
+  fieldA: {fileID: 0}

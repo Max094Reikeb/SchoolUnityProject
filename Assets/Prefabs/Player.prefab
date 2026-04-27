@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 1826b4bcec81a0849b5961c109742038, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,6 +109,9 @@ MonoBehaviour:
   Speed: 12
   SpeedDecrease: 0.9
   Body: {fileID: 7031827169142184636}
+  HP: 10
+  HPSlider: {fileID: 0}
+  GameOverScreen: {fileID: 0}
 --- !u!54 &7031827169142184636
 Rigidbody:
   m_ObjectHideFlags: 0
