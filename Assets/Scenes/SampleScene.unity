@@ -1401,8 +1401,8 @@ MonoBehaviour:
   FewerDangersPickupPrefab: {fileID: 4658714687654007297, guid: 1ffdeb5ddbb4c40d8a48a639c625f1a3, type: 3}
   SpeedUpPickupPrefab: {fileID: 5176365603446875217, guid: b710197b1051b41fbafa38dd0e4311f6, type: 3}
   MoreDangersPickupPrefab: {fileID: 4569732917031953306, guid: aef7b0d59af4943d3b50a347025111e5, type: 3}
-  SpawnBounds: {x: 13.5, y: 6.2}
-  SpawnDelay: {x: 0.2, y: 1}
+  SpawnBounds: {x: 8, y: 4}
+  SpawnDelay: {x: 0.2, y: 0.7}
 --- !u!1 &1563318551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,31 +2433,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6902659670818893444, guid: b710197b1051b41fbafa38dd0e4311f6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1825017727420899665}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b710197b1051b41fbafa38dd0e4311f6, type: 3}
---- !u!1 &1825017727420899664 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6902659670818893444, guid: b710197b1051b41fbafa38dd0e4311f6, type: 3}
-  m_PrefabInstance: {fileID: 1825017727420899663}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1825017727420899665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825017727420899664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b3d80beb867443d836c01d51d2a7ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupShape
-  ShapeType: 2
-  Radius: 0.5
-  Thickness: 0.2
 --- !u!1001 &3416860888871407335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2635,31 +2612,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5516658657084034301, guid: aef7b0d59af4943d3b50a347025111e5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4643001044715400989}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aef7b0d59af4943d3b50a347025111e5, type: 3}
---- !u!1 &4643001044715400988 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5516658657084034301, guid: aef7b0d59af4943d3b50a347025111e5, type: 3}
-  m_PrefabInstance: {fileID: 4643001044715400987}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4643001044715400989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4643001044715400988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b3d80beb867443d836c01d51d2a7ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupShape
-  ShapeType: 3
-  Radius: 0.5
-  Thickness: 0.2
 --- !u!1001 &8355888211799931282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2715,31 +2669,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7417923760427030045, guid: 1ffdeb5ddbb4c40d8a48a639c625f1a3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8355888211799931284}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ffdeb5ddbb4c40d8a48a639c625f1a3, type: 3}
---- !u!1 &8355888211799931283 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7417923760427030045, guid: 1ffdeb5ddbb4c40d8a48a639c625f1a3, type: 3}
-  m_PrefabInstance: {fileID: 8355888211799931282}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8355888211799931284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8355888211799931283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b3d80beb867443d836c01d51d2a7ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupShape
-  ShapeType: 1
-  Radius: 0.5
-  Thickness: 0.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
