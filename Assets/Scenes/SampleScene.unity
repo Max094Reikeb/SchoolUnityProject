@@ -1401,7 +1401,7 @@ MonoBehaviour:
   FewerDangersPickupPrefab: {fileID: 4658714687654007297, guid: 1ffdeb5ddbb4c40d8a48a639c625f1a3, type: 3}
   SpeedUpPickupPrefab: {fileID: 5176365603446875217, guid: b710197b1051b41fbafa38dd0e4311f6, type: 3}
   MoreDangersPickupPrefab: {fileID: 4569732917031953306, guid: aef7b0d59af4943d3b50a347025111e5, type: 3}
-  SpawnBounds: {x: 8, y: 4}
+  SpawnBounds: {x: 7.5, y: 4}
   SpawnDelay: {x: 0.2, y: 0.7}
 --- !u!1 &1563318551
 GameObject:
