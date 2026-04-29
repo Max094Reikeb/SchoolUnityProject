@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject GameOverScreen;
 
+    [SerializeField]
+    private Score Score;          // Référence au ScoreManager
+
     void OnMove(InputValue value)
     {
         _movement = value.Get<Vector2>();
@@ -51,6 +54,7 @@ public class Player : MonoBehaviour
             if (HP <= 0)
             {
                 enabled = false;
+                Score.Stop(); 
                 GameOverScreen.SetActive(true);
             }
             return;

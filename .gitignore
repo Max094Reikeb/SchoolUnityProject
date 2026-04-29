@@ -104,3 +104,10 @@ InitTestScene*.unity*
 
 # Notes et docs perso à la racine (non versionnées) — ne touche pas aux .md dans Assets/
 /*.md
+
+# CLAUDE.md (et leur .meta Unity) ignorés partout — notes locales pour Claude Code
+CLAUDE.md
+CLAUDE.md.meta
+
+# Logs générés par Unity lors d'un upgrade de version
+UpgradeLog.htm
