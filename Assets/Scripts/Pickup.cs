@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    public enum EffectType { SlowDown, FewerDangers, SpeedUp, MoreDangers }
+    public enum EffectType { SlowDown, FewerDangers, SpeedUp, MoreDangers, ScoreUp, ScoreDown, RestoreHealth }
 
     [SerializeField]
     private float Speed;

@@ -23,11 +23,28 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private Pickup MoreDangersPickupPrefab;
 
+    [SerializeField]
+    private Pickup ScoreUpPickupPrefab;
+
+    [SerializeField]
+    private Pickup ScoreDownPickupPrefab;
+
+    [SerializeField]
+    private Pickup HealthPickupPrefab;
+
+    private Player _player;
+
+    void Awake()
+    {
+        _player = FindAnyObjectByType<Player>();
+    }
+
     private const int SphereDamages = 1;
     private const int SquareDamages = 3;
     private const int CapsuleDamages = 5;
 
     private const float PickupSpawnChance = 0.15f;
+    private const float HealthPickupChance = 0.05f;
 
     private const float SlowFactor = 0.5f;
     private const float SpeedUpFactor = 1.6f;
@@ -113,11 +130,20 @@ public class Spawner : MonoBehaviour
     private void SpawnPickup()
     {
         Pickup prefab;
-        float r = Random.value;
-        if (r < 0.25f) prefab = SlowDownPickupPrefab;
-        else if (r < 0.50f) prefab = FewerDangersPickupPrefab;
-        else if (r < 0.75f) prefab = SpeedUpPickupPrefab;
-        else prefab = MoreDangersPickupPrefab;
+        if (Random.value < HealthPickupChance)
+        {
+            prefab = HealthPickupPrefab;
+        }
+        else
+        {
+            float r = Random.value;
+            if (r < 1f / 6f) prefab = SlowDownPickupPrefab;
+            else if (r < 2f / 6f) prefab = FewerDangersPickupPrefab;
+            else if (r < 3f / 6f) prefab = SpeedUpPickupPrefab;
+            else if (r < 4f / 6f) prefab = MoreDangersPickupPrefab;
+            else if (r < 5f / 6f) prefab = ScoreUpPickupPrefab;
+            else prefab = ScoreDownPickupPrefab;
+        }
 
         if (prefab == null) return;
 
@@ -155,6 +181,15 @@ public class Spawner : MonoBehaviour
                 break;
             case Pickup.EffectType.MoreDangers:
                 _moreDangersEndTime = Mathf.Max(Time.time, _moreDangersEndTime) + duration;
+                break;
+            case Pickup.EffectType.ScoreUp:
+                // TODO: apply x1.5 score multiplier once scoring is wired up.
+                break;
+            case Pickup.EffectType.ScoreDown:
+                // TODO: apply x0.5 score multiplier once scoring is wired up.
+                break;
+            case Pickup.EffectType.RestoreHealth:
+                if (_player != null) _player.Heal();
                 break;
         }
     }
