@@ -27,6 +27,23 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Score Score;          // Référence au ScoreManager
 
+    [SerializeField]
+    private GameObject Visual;    // Modèle visuel (vaisseau) instancié en enfant
+
+    [SerializeField]
+    private float VisualScale = 1.5f;
+
+    void Awake()
+    {
+        if (Visual != null)
+        {
+            GameObject v = Instantiate(Visual, transform);
+            v.transform.localPosition = Vector3.zero;
+            v.transform.localRotation = Quaternion.identity;
+            v.transform.localScale = Vector3.one * VisualScale;
+        }
+    }
+
     void OnMove(InputValue value)
     {
         _movement = value.Get<Vector2>();
