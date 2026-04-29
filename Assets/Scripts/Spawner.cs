@@ -33,10 +33,12 @@ public class Spawner : MonoBehaviour
     private Pickup HealthPickupPrefab;
 
     private Player _player;
+    private Score _score;
 
     void Awake()
     {
         _player = FindAnyObjectByType<Player>();
+        _score = FindAnyObjectByType<Score>();
     }
 
     private const int SphereDamages = 1;
@@ -183,10 +185,10 @@ public class Spawner : MonoBehaviour
                 _moreDangersEndTime = Mathf.Max(Time.time, _moreDangersEndTime) + duration;
                 break;
             case Pickup.EffectType.ScoreUp:
-                // TODO: apply x1.5 score multiplier once scoring is wired up.
+                if (_score != null) _score.ApplyScoreUp(duration);
                 break;
             case Pickup.EffectType.ScoreDown:
-                // TODO: apply x0.5 score multiplier once scoring is wired up.
+                if (_score != null) _score.ApplyScoreDown(duration);
                 break;
             case Pickup.EffectType.RestoreHealth:
                 if (_player != null) _player.Heal();
