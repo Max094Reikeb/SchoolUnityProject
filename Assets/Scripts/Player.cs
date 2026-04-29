@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         Pickup p = other.GetComponent<Pickup>();
         if (p != null)
         {
-            p.Collect();
+            p.Collect(transform);
         }
     }
 }
