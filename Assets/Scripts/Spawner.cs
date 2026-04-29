@@ -43,7 +43,7 @@ public class Spawner : MonoBehaviour
     private const int SquareDamages = 3;
     private const int CapsuleDamages = 5;
 
-    private const float PickupSpawnChance = 0.15f;
+    private const float PickupSpawnChance = 0.10f;
     private const float HealthPickupChance = 0.05f;
 
     private const float SlowFactor = 0.5f;
