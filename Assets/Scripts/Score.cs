@@ -11,6 +11,7 @@ public class Score : MonoBehaviour
 
     private float _elapsedTime;          // Temps de jeu accumulé en secondes
     private int _currentScore;           // Score affiché, arrondi à l'entier
+    public int CurrentScore => _currentScore;   // Lecture publique du score actuel
 
     private float _scoreUpEndTime;
     private float _scoreDownEndTime;
