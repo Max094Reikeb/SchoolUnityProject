@@ -143,6 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b3d80beb867443d836c01d51d2a7ed, type: 3}
   m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::PickupShape
-  ShapeType: 0
+  ShapeType: 5
   Radius: 0.5
   Thickness: 0.2
