@@ -54,6 +54,12 @@ public class Spawner : MonoBehaviour
     private const float MoreDangersFactor = 2f;
 
     [SerializeField]
+    private float ScorePerSpeedStep = 60f;   // Intervalle de score sur lequel la vitesse est multipliée par ProgressionGrowth
+
+    [SerializeField]
+    private float ProgressionGrowth = 1.5f;   // Facteur multiplicatif appliqué par palier (croissance exponentielle)
+
+    [SerializeField]
     private Vector2 SpawnBounds;
 
     [SerializeField]
@@ -70,10 +76,19 @@ public class Spawner : MonoBehaviour
     {
         get
         {
-            float m = 1f;
+            float m = ProgressionMultiplier;
             if (Time.time < _slowEndTime) m *= SlowFactor;
             if (Time.time < _speedUpEndTime) m *= SpeedUpFactor;
             return m;
+        }
+    }
+
+    private float ProgressionMultiplier
+    {
+        get
+        {
+            if (_score == null || ScorePerSpeedStep <= 0f) return 1f;
+            return Mathf.Pow(ProgressionGrowth, _score.CurrentScore / ScorePerSpeedStep);
         }
     }
 

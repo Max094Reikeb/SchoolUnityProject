@@ -2605,7 +2605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StarField
   System: {fileID: 0}
-  Spawner: {fileID: 0}
+  Spawner: {fileID: 1422670893}
 --- !u!199 &2054190074
 ParticleSystemRenderer:
   serializedVersion: 7
